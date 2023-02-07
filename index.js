@@ -18,6 +18,11 @@ module.exports = {
 
         const fileName = context.getFilename();
 
+        //incompatibility with vue files
+        if (fileName.match(/\.vue$/)) {          
+          return {};
+        }
+
         const tsLanguageService = ts.createLanguageService({
           files: {
             [fileName]: ts.ScriptSnapshot.fromString(sourceCode.text),
